@@ -1,7 +1,9 @@
 (ns maven-repo.core
-    (:require [ring.adapter.jetty :as jetty]
+    (:require [maven-repo.handler :as handler]
+              [maven-repo.auth :as auth]
+              [ring.adapter.jetty :as jetty]
               [compojure.core :refer [routes]]
-              [maven-repo.handler :as handler]
+              [compojure.route :refer [not-found]]
               [clojure.tools.cli :refer [cli]]
               [clojure.edn :as edn]
               [clojure.java.io :refer [as-file]]
@@ -11,15 +13,14 @@
 (def options
     {:repo-location "test-repo"
      :endpoint "/maven2"
+     :users [{"boogie" "hello"}]
      :proxies ["https://repo.maven.apache.org/maven2"]})
 
-(defn authenticated? [name pass]
-    (and (= name "boogie")
-         (= pass "hello")))
 
 (def app
     (-> (routes (handler/repo-routes options)
-                (handler/deployment-routes options))
-        (wrap-basic-authentication authenticated?)))
+                (handler/deployment-routes options)
+                (not-found "404 Not found!"))
+        (wrap-basic-authentication (partial auth/authenticated? options))))
 
 (defn -main [& args])

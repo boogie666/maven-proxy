@@ -1,11 +1,9 @@
 (ns maven-repo.handler-spec
   (:require [speclj.core :refer :all]
             [ring.mock.request :as mock]
-            [clojure.java.io :refer [as-file delete-file make-parents]]
-            [maven-repo.handler :refer :all]))
-
-(defn path [& args]
-    (clojure.string/join java.io.File/separator args))
+            [clojure.java.io :refer [as-file]]
+            [maven-repo.handler :refer :all]
+            [maven-repo.spec-utils :refer :all]))
 
 (def options
     {:repo-location "spec/test-repo/"
@@ -14,23 +12,6 @@
 
 (def routes (repo-routes options))
 
-(defn create-files [files]
-    (doseq [f files]
-        (make-parents f)
-        (spit f f)))
-
-(defn delete-directory [path]
-    (let [file (as-file path)]
-        (if (.isDirectory file)
-            (do
-                (doseq [f (.listFiles file)]
-                    (delete-directory (.getPath f)))
-                (.delete file))
-            (.delete file))))
-
-(defn cleanup-files [files]
-    (doseq [f files]
-        (delete-directory f)))
 
 (describe (str (:endpoint options) " route handler")
 
