@@ -7,8 +7,8 @@ jdk:
 - oraclejdk7
 - oraclejdk8
 before_deploy:
-- lein ring uberjar
-- export RELEASE_PKG_FILE=$(ls target/*standalone.jar)
+- lein with-profile release ring uberjar
+- export RELEASE_PKG_FILE=$(ls target/maven-proxy.jar)
 - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
 deploy:
   provider: releases
