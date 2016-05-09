@@ -2,19 +2,19 @@ language: clojure
 script: lein spec
 sudo: false
 jdk:
-  - openjdk6
-  - openjdk7
-  - oraclejdk7
-  - oraclejdk8
-
+- openjdk6
+- openjdk7
+- oraclejdk7
+- oraclejdk8
 before_deploy:
-  - lein ring uberjar
-  - export RELEASE_PKG_FILE=$(ls target/*standalone.jar)
-  - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
+- lein ring uberjar
+- export RELEASE_PKG_FILE=$(ls target/*standalone.jar)
+- echo "deploying $RELEASE_PKG_FILE to GitHub releases"
 deploy:
   provider: releases
-  api_key: "v2C0ndIYxXH1y2yKFNmRkujLv+6PkVmw19OrdSbOfNQpMnEWVCYARZxxuev+5ygU4NsTlesp5ZmRsMAFY4xkRqo0WkHyYPqzGscRB6XasxT7TJArUt+2NrxpgiHX4dglD7qIbL98JuWWoTOduDtnu5ZzegeXKKCqb2DY1/gU2TGpfZv/FE8GVz6xnG/tJf5lysJctpd1yEZyy7ZgdirtA52pyIqAF+XKexCGbPKLTILylq+C9Pf4PRULm6coQuGVWQdTr+mHvozQLz/uUrLXJonrTnSplnt59xy7R1uc10J9tkae2Qc4vutcVNQQd6AmauGnXOd2tfc1ZsXfHRJuqRjdLFLF3hwajg14oP3JMKkvxc57e5RsqnIh6tkahRT7q6ji1Bt0D1fn51WucCbpTYuzLJZf4AzH99dlJXe1NyQy7gfMYENysJt2DnTzP8CEfpeQSFktpMcNXhthI9eCiDKvRSjxgGHM8gZAYpwMgZOkWc3J6HnpkWUU18isd+NjhCdMG8bN/1/B5GTTVHfveQ5fjETYyn0MWDxnxB+IfiSbidzkWi25DW40w2YY0EES8+UMuz/IUyhOdIuDZpWysa3oPXt8I3trsNuBGVL1rnpQ/jF3VAX+OJ1o4gImkSFkdt9GN4nYSolvZNwbtQRwoZPgW7eDtYkY66KNXL5sFEI="
   file: "${RELEASE_PKG_FILE}"
+  api-key:
+    secure: v4gHp0R6OGg7Tv8lhqU0oaXAn82FJj6hLe55IaMQMjvgT8u/WY3dhyBlXQ3SpAznIj5+jbzrdWAdM+lbuhzQ7nsWvmWctuOFz9mktXOAWacWPZmQ0iiorItZ26q6a/pHNxhalLDM5f0OljITw4w8OcB6+m6LAltXJHng28i0TKTRjlQFyLP9d0x1fhZxXiGPKI1lWDBmwH5xT4OZSFW/3ZYfl4heIy7yXrDda5WoRQTfHQGaN++GKZXvoTqVCCEl2YroMfNdnoEyRAfGIi0Kr6yr0GU1SiCgsHX0q4kVfqjA4UNUZ2nmc3onlPnSWMWrAY2s1cHTK/GSjakYtsgx4Xu+mJOPfUUiY3dQKiPUge6gI/JF1jx/WPi1Y35sxslf+JwQ1+aAuLv0gMs+qQgjYrx82IiSjXBhrtInenmcyjNJA9qbCXDQMXSc67XNBBAJKBItpolYtotoXy5E8sB+jv+OGDQRhUdsl7UxgaDccftUqtyuEHyfxdE39DqdKOimAh259+dtR6l2mk2kOcdu8hDYVUacVqRMMD1VWM/sxx94T3SMZe22nyvN2tRNjOqeLqVRFXoOEY7sklmXVA+w/9oeB5OpQefUs93QUZ8Y1R5VYBFGG2+o+4Opl6qT8F3UiR/750L6JCGs21IuHUUEKh8pY88b5qRvuNW6e1vHbQg=
   skip_cleanup: true
   on:
     tags: true
