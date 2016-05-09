@@ -3,9 +3,10 @@
 
 (def DEFAULTS
     {:repo-location "maven2-repo"
-     :endpoint "maven2"
+     :endpoint "/maven2"
      :proxies ["https://repo.maven.apache.org/maven2"]
-     :users [{"admin" "admin"}]})
+     :port 1337
+     :users []})
 
 (defn has-all-configs? [options]
     (let [keys-options (set (keys options))

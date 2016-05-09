@@ -9,7 +9,7 @@
 (describe "options - defaults"
     (after (cleanup-files [options-file]))
     (it "creates a file with default options"
-        (let [defaults {:repo-location "maven2-repo" :endpoint "maven2" :users [{"admin" "admin"}] :proxies ["https://repo.maven.apache.org/maven2"]}]
+        (let [defaults {:port 1337 :repo-location "maven2-repo" :endpoint "/maven2" :users [] :proxies ["https://repo.maven.apache.org/maven2"]}]
             (create-default-config! (str options-file))
             (should= defaults (read-string (slurp options-file))))))
 
