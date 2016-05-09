@@ -19,6 +19,4 @@
     :plugins [[speclj "3.3.2"]]
     :dependencies [[javax.servlet/servlet-api "2.5"]
                    [ring/ring-mock "0.3.0"]
-                   [speclj "3.3.2"]]}
-    :release {
-        :uberjar-name "maven-proxy.jar"}})
+                   [speclj "3.3.2"]]}})
