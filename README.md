@@ -1,6 +1,7 @@
-# maven-repo
+# maven-repo [![Build Status](https://travis-ci.org/boogie666/maven-proxy.svg?branch=master)](https://travis-ci.org/boogie666/maven-proxy)
 
-[![Build Status](https://travis-ci.org/boogie666/maven-proxy.svg?branch=master)](https://travis-ci.org/boogie666/maven-proxy)
+A simple maven proxy
+
 
 ## Prerequisites
 
