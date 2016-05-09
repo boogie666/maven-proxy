@@ -2,7 +2,6 @@
 
 A simple maven proxy
 
-
 ## Prerequisites
 
 You will need [Leiningen][] 2.0.0 or above installed.
@@ -13,8 +12,14 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 To start a web server for the application, run:
 
-    lein ring server
+    lein ring server-headless (no point with starting a browser)
+
+## Building
+
+To build the cli app run:
+
+    lein ring uberjar
 
 ## License
 
-Copyright © 2016 FIXME
+MIT
