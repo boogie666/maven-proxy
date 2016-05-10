@@ -24,7 +24,7 @@ To build the cli app run:
 
 You can get the latest build [here][]
 
-[latest]: https://github.com/boogie666/maven-proxy/releases/latest
+[here]: https://github.com/boogie666/maven-proxy/releases/latest
 
 ## License
 
