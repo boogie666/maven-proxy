@@ -22,7 +22,7 @@ To build the cli app run:
 
 ## Download the latest release
 
-[Latest Release]: https://github.com/boogie666/maven-proxy/releases/latest
+[Latest Release][https://github.com/boogie666/maven-proxy/releases/latest]
 
 ## License
 
