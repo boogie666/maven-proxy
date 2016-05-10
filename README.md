@@ -20,6 +20,10 @@ To build the cli app run:
 
     lein ring uberjar
 
+## Download the latest release
+
+[Latest Release]: https://github.com/boogie666/maven-proxy/releases/latest
+
 ## License
 
 MIT
