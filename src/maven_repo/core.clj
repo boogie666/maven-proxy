@@ -12,11 +12,15 @@
     (:gen-class))
 
 
-(def app
-    (-> (routes (handler/repo-routes DEFAULTS)
-                (handler/deployment-routes DEFAULTS)
-                (not-found "404 Not found!"))
-        (wrap-basic-authentication (partial auth/authenticated? DEFAULTS))))
+(defn create-app [options]
+    (-> (routes
+            (handler/repo-routes options)
+            (handler/deployment-routes options)
+            (not-found "404 Not found!"))
+        (wrap-basic-authentication (partial auth/authenticated? options))))
+
+
+(def app (create-app DEFAULTS))
 
 (defn print-help [args]
     (println "Simple Maven Proxy")
@@ -49,11 +53,7 @@
 
 (defn start-app [args]
     (let [options (load-options (first args))
-          handler (-> (routes
-                          (handler/repo-routes options)
-                          (handler/deployment-routes options)
-                          (not-found "404 Not found!"))
-                      (wrap-basic-authentication (partial auth/authenticated? options)))]
+          handler (create-app options)]
         (print-options options)
         (jetty/run-jetty handler {:port (:port options)})))
 
