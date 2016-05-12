@@ -8,7 +8,8 @@
               [clojure.edn :as edn]
               [clojure.java.io :refer [as-file]]
               [maven-repo.options :refer [create-default-config! load-options DEFAULTS]]
-              [ring.middleware.basic-authentication :refer [wrap-basic-authentication]])
+              [ring.middleware.basic-authentication :refer [wrap-basic-authentication]]
+              [ring.logger :as logger])
     (:gen-class))
 
 
@@ -17,6 +18,7 @@
             (handler/repo-routes options)
             (handler/deployment-routes options)
             (not-found "404 Not found!"))
+        (logger/wrap-with-logger {:printer :no-color})
         (wrap-basic-authentication (partial auth/authenticated? options))))
 
 

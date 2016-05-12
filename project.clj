@@ -5,9 +5,9 @@
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [compojure "1.5.0"]
                  [ring/ring-defaults "0.1.5"]
+                 [ring-logger "0.7.6"]
                  [ring-basic-authentication "1.0.5"]
                  [org.clojure/tools.cli "0.2.4"]
-                 [org.clojure/tools.logging "0.3.1"]
                  [digest "1.4.4"]]
 
   :plugins [[lein-ring "0.9.7"]]
