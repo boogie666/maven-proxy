@@ -1,7 +1,7 @@
 (ns maven-repo.handler-spec
   (:require [speclj.core :refer :all]
             [ring.mock.request :as mock]
-            [clojure.java.io :refer [as-file]]
+            [clojure.java.io :refer [as-file] :as io]
             [maven-repo.handler :refer :all]
             [maven-repo.spec-utils :refer :all]))
 
@@ -43,7 +43,11 @@
                 (:body (routes request)))))
     (it "returns nil if file can't be found anywhere"
         (let [request (mock/request :get "/maven2/non-existent-module/non-existent-file")]
-                (should= nil (routes request)))))
+                (should= nil (routes request))))
+    (it "does not create folders on 404"
+        (let [request (mock/request :get "/maven2/a/b/c.txt")]
+            (routes request))
+            (should= false (.exists (io/file (path (:repo-location options) "a" "b"))))))
 
 (def deploy (deployment-routes options))
 (describe (str (:endpoint options) " route handler (deployment)")

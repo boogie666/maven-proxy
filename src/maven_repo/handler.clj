@@ -10,11 +10,11 @@
     (GET (str endpoint "*") {{file-path :*} :route-params}
         (let [read-path (str proxy file-path)
               write-path (str repo-path file-path)]
-            (io/make-parents (io/as-file write-path))
             (try
-                (with-open [in (io/input-stream read-path)
-                            out (io/output-stream write-path)]
-                    (io/copy in out))
+                (with-open [in (io/input-stream read-path)]
+                    (io/make-parents (io/as-file write-path))
+                    (with-open [out (io/output-stream write-path)]
+                        (io/copy in out)))
                     (response/file-response write-path)
                 (catch java.lang.Exception e
                     nil)))))
